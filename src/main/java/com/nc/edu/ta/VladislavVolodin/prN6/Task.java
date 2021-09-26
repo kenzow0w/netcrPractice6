@@ -194,6 +194,8 @@ public class Task implements Cloneable {
         return repeat;
     }
 
+
+
     /**
      * Method checked repeat of the task
      *
