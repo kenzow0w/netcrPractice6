@@ -211,7 +211,7 @@ public class Task implements Cloneable {
      */
     public Date nextTimeAfter(Date dateNextTime) {
         myExceptionForNonRepeated(dateNextTime);
-        Date result = null;
+        Date result = dateStart;
         if (isActive())
             if (isRepeated()) {  //TODO!!
                 for (Date tmp = dateStart; tmp.after(dateEnd); ) {

@@ -67,7 +67,7 @@ public class TaskTest {
         assertTrue("repeated", task.isRepeated());
         assertEquals("repeatInterval", HOUR, task.getRepeatInterval());
     }
-    @Ignore
+
     @Test
     public void testNextNonRepeative() {
         Task task = new Task("some", TODAY);
