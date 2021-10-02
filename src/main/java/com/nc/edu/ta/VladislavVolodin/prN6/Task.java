@@ -1,5 +1,6 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
+import java.io.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import static java.util.Calendar.HOUR;
  * @author Vladislav Volodin
  */
 
-public class Task implements Cloneable {
+public class Task implements Cloneable, Serializable {
     /**
      * task name
      */
@@ -61,6 +62,10 @@ public class Task implements Cloneable {
         this.repeat = repeat;
         titleException(title);
         myExceptionForRepeated(dateStart, dateEnd, repeat);
+    }
+
+    public Task() {
+
     }
 
     /**
@@ -137,9 +142,9 @@ public class Task implements Cloneable {
     /**
      * Constructor for repeating tasks
      *
-     * @param dateStart   start notification time
-     * @param dateEnd  end notification time
-     * @param repeat time interval to repeat the task
+     * @param dateStart start notification time
+     * @param dateEnd   end notification time
+     * @param repeat    time interval to repeat the task
      */
     public void setTime(Date dateStart, Date dateEnd, int repeat) {
         this.dateStart = dateStart;
@@ -195,7 +200,6 @@ public class Task implements Cloneable {
     }
 
 
-
     /**
      * Method checked repeat of the task
      *
@@ -213,18 +217,22 @@ public class Task implements Cloneable {
      */
     public Date nextTimeAfter(Date dateNextTime) {
         myExceptionForNonRepeated(dateNextTime);
-        Date result = dateStart;
+        Date result = null;
+
+        if (dateNextTime.after(dateEnd)) {
+            return null;
+        }
         if (isActive())
             if (isRepeated()) {  //TODO!!
-                for (Date tmp = dateStart; tmp.after(dateEnd); ) {
-                    if (tmp.getTime() > dateNextTime.getTime()) {
-                        result = dateStart;
+                for (Date tmp = dateStart; tmp.compareTo(dateEnd) <= 0; tmp = new Date(tmp.getTime() + (repeat * 1000L))) {
+                    if (tmp.compareTo(dateNextTime) > 0) {
+                        result = tmp;
                         break;
                     }
                 }
             } else {
-                if (dateNextTime.getTime() >= dateStart.getTime()) {
-                    result = null;
+                if (dateNextTime.before(dateStart)) {
+                    result = dateStart;
                 }
             }
         return result;
@@ -265,17 +273,21 @@ public class Task implements Cloneable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+        if (o == null || o.getClass() != this.getClass()) return false;
         Task task = (Task) o;
-        return dateStart == task.dateStart && dateEnd == task.dateEnd && repeat == task.repeat && active == task.active && Objects.equals(title, task.title);
+        return
+                Objects.equals(getStartTime(), task.getStartTime())
+                        && Objects.equals(getEndTime(), task.getEndTime())
+                        && ((Task) o).getRepeatInterval() == task.getRepeatInterval()
+                        && isActive() == task.isActive()
+                        && Objects.equals(title, task.title);
     }
 
-    public int hashCode(Object o) {
+    public int hashCode() {
         final int prime = 31;
-
         int result = 1;
         result = prime * title.hashCode();
-        result = prime * result + (hashCode(getStartTime()) * prime);
+        result = prime * result + (getStartTime().hashCode() * prime);
         result = prime * result + (getTime().hashCode() * prime);
         result = prime * result + (getEndTime().hashCode() * prime);
         result = prime * result + (getRepeatInterval() * prime);
@@ -284,11 +296,26 @@ public class Task implements Cloneable {
         // return Objects.hash(title, start, end, repeat, active);
     }
 
-    public Object clone(Object obj) {
-// this.
-        return null;
-    }
+    public Task clone() throws CloneNotSupportedException {
+//        taskClone.title = this.title;
+//        taskClone.dateStart = this.dateStart;
+//        taskClone.dateEnd = this.dateEnd;
+//        taskClone.repeat = this.repeat;
+//        return taskClone;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream ous = new ObjectOutputStream(baos);
+            ous.writeObject(this);
+            ous.close();
 
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+
+            return (Task) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new CloneNotSupportedException();
+        }
+    }
 }
 
 

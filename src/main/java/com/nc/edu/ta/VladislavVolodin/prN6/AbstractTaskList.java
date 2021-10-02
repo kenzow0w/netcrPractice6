@@ -1,5 +1,6 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -59,13 +60,6 @@ public abstract class AbstractTaskList implements Iterable<Task> {
         return size;
     }
 
-    /**
-     * Return task list in a set interval
-     *
-     * @param from start notification time
-     * @param to   end notification time
-     * @return task list
-     */
-    public abstract Task[] incoming(int from, int to);
+
 
 }

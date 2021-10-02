@@ -1,4 +1,4 @@
-/*
+
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
 import java.util.Arrays;
@@ -41,4 +41,3 @@ public abstract class AbstractTaskListTest {
         return tasksClass.getSimpleName();
     }
 }
-*/

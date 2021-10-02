@@ -1,6 +1,4 @@
-/*
 package com.nc.edu.ta.VladislavVolodin.prN6;
-import com.nc.edu.ta.VladislavVolodin.prN6.*;
 
 import java.util.*;
 
@@ -13,7 +11,7 @@ public class EqualsListTest extends AbstractTaskListTest {
     public EqualsListTest(Class<? extends TaskList> tasksClass) {
         super(tasksClass);
     }
-    
+
     @Test
     public void testEquals() throws Exception {
         Task[] elements = {task("A"), task("B"), task("C")};
@@ -82,7 +80,6 @@ class DummyList extends TaskList {
     }
 }
 
-*/
 
 
 

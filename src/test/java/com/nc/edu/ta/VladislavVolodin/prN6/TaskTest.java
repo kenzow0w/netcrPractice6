@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class TaskTest {
@@ -77,7 +76,7 @@ public class TaskTest {
         assertEquals(NEVER, task.nextTimeAfter(TODAY));
         assertEquals(NEVER, task.nextTimeAfter(TOMORROW));
     }
-    @Ignore
+
     @Test
     public void testNextRepeative() {
         Task task = new Task("some", TODAY, TOMORROW, HOUR);
@@ -90,7 +89,7 @@ public class TaskTest {
         assertEquals(TOMORROW, task.nextTimeAfter(ALMOST_TOMORROW));
         assertEquals(NEVER, task.nextTimeAfter(TOMORROW));
     }
-    @Ignore
+
     @Test
     public void testNextInactive() {
         Task task = new Task("some", TODAY);
