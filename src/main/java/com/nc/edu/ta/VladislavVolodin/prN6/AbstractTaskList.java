@@ -1,12 +1,14 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-
 import java.io.*;
+import java.util.Iterator;
+
 
 /**
  * Description class AbstractTaskList
  */
-public abstract class AbstractTaskList implements Serializable {
+public abstract class AbstractTaskList implements Serializable, Iterable<Task> {
+
     /**
      * Cunt of tasks
      */
@@ -44,18 +46,23 @@ public abstract class AbstractTaskList implements Serializable {
     }
 
     @Override
-    public TaskList clone() {
+    public AbstractTaskList clone() {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream ous = new ObjectOutputStream(baos);
             ous.writeObject(this);
             ous.close();
+
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(bais);
-            return (TaskList) ois.readObject();
+            return (AbstractTaskList) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return null;
         }
     }
 
+    @Override
+    public Iterator<Task> iterator() {
+        return null;
+    }
 }

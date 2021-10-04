@@ -1,11 +1,12 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
+import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 
 import org.junit.Test;
+
 
 public class TaskTest {
 
@@ -16,7 +17,7 @@ public class TaskTest {
         task.setTitle("other");
         assertEquals("other", task.getTitle());
     }
-
+    
     @Test
     public void testActive() {
         Task task = new Task("test", TODAY);
@@ -24,7 +25,6 @@ public class TaskTest {
         task.setActive(true);
         assertTrue(task.isActive());
     }
-
     @Test
     public void testConstructorNonrepeated() {
         Task task = new Task("test", TODAY);
@@ -34,7 +34,6 @@ public class TaskTest {
         assertEquals("end", TODAY, task.getEndTime());
         assertFalse("repeated", task.isRepeated());
     }
-
     @Test
     public void testConstructorRepeated() {
         Task task = new Task("test", TODAY, TOMORROW, 5 * MINUTE);
@@ -45,7 +44,6 @@ public class TaskTest {
         assertTrue("repeated", task.isRepeated());
         assertEquals("repeatInterval", 5 * MINUTE, task.getRepeatInterval());
     }
-
     @Test
     public void testTimeNonRepeated() {
         Task task = new Task("test", TODAY, TOMORROW, 15 * MINUTE);
@@ -55,7 +53,6 @@ public class TaskTest {
         assertEquals("end", TOMORROW, task.getEndTime());
         assertFalse("repeated", task.isRepeated());
     }
-
     @Test
     public void testTimeRepeated() {
         Task task = new Task("test", TOMORROW);
@@ -66,7 +63,6 @@ public class TaskTest {
         assertTrue("repeated", task.isRepeated());
         assertEquals("repeatInterval", HOUR, task.getRepeatInterval());
     }
-
     @Test
     public void testNextNonRepeative() {
         Task task = new Task("some", TODAY);
@@ -76,7 +72,6 @@ public class TaskTest {
         assertEquals(NEVER, task.nextTimeAfter(TODAY));
         assertEquals(NEVER, task.nextTimeAfter(TOMORROW));
     }
-
     @Test
     public void testNextRepeative() {
         Task task = new Task("some", TODAY, TOMORROW, HOUR);
@@ -89,26 +84,24 @@ public class TaskTest {
         assertEquals(TOMORROW, task.nextTimeAfter(ALMOST_TOMORROW));
         assertEquals(NEVER, task.nextTimeAfter(TOMORROW));
     }
-
     @Test
     public void testNextInactive() {
         Task task = new Task("some", TODAY);
         task.setActive(false);
         assertEquals(NEVER, task.nextTimeAfter(YESTERDAY));
     }
-
     @Test(expected = RuntimeException.class)
     public void testWrongTitle() {
         new Task(null, TODAY);
-    }
+    }        
 
     @Test(expected = RuntimeException.class)
     public void testWrongTitle2() {
         Task task = new Task("OK", TODAY);
         task.setTitle(null);
-    }
-
-
+    }        
+    
+    
     @Test(expected = RuntimeException.class)
     public void testWrongTime() {
         new Task("Title", null);
@@ -152,7 +145,7 @@ public class TaskTest {
         Task task = new Task("Title", TODAY);
         task.setTime(TODAY, TOMORROW, -1);
     }
-
+    
     @Test(expected = RuntimeException.class)
     public void testWrongTimeAfter() {
         Task task = new Task("some", TODAY);

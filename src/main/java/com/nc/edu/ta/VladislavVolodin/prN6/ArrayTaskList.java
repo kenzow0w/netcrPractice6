@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Description class ArrayTaskList
  */
-public class ArrayTaskList extends AbstractTaskList {
+public class ArrayTaskList extends TaskList {
 
 
     /**
@@ -146,5 +146,6 @@ public class ArrayTaskList extends AbstractTaskList {
             hashCode = 31 * hashCode + (tmp == null ? 0 : tmp.hashCode());
         }
         return hashCode;
+
     }
 }

@@ -1,12 +1,9 @@
-/*
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-
 import java.util.*;
-
 import org.junit.*;
-import static org.junit.Assert.*;
 import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
+import static org.junit.Assert.*;
 
 public class CloneListTest extends AbstractTaskListTest {
 
@@ -15,7 +12,7 @@ public class CloneListTest extends AbstractTaskListTest {
     }
     
     @Test
-    public void testClone() throws CloneNotSupportedException {
+    public void testClone() {
         Task[] elements = { task("A"), task("B"), task("C") };
         for (Task task : elements)
             tasks.add(task);
@@ -37,5 +34,3 @@ public class CloneListTest extends AbstractTaskListTest {
         assertContains(getTitle(), elements, tasks);
     }
 }
-*/
-

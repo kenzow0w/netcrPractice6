@@ -13,14 +13,47 @@ public class Tasks {
      * @return task list
      */
     public static List<Task> incoming(List<Task> tasks, Date from, Date to) {
-        exceptionDate(from, to);
-        Predicate<Date> predicate = date -> date.compareTo(from) > 0 && date.compareTo(to) <= 0;
-        return getResultTasks(tasks, predicate);
+        List<Task> result = new ArrayList<>();
+        for(Task task: tasks) {
+            if(task.isActive()) {
+                if (task.isRepeated()) {
+                    for (Date time = task.getStartTime(); time.compareTo(task.getEndTime()) <= 0; time = new Date(time.getTime() + task.getRepeatInterval() * 1000L)) {
+                        if(time.compareTo(from) > 0 && time.compareTo(to) <= 0) {
+                            result.add(task);
+                            break;
+                        }
+                    }
+                } else {
+                    Date time = task.getTime();
+                    if(time.compareTo(from) > 0 && time.compareTo(to) <= 0) {
+                        result.add(task);
+                    }
+                }
+            }
+        }
+        return result;
     }
 
-    public static List<Task> incoming(List<Task> tasks, Date point) {
-        Predicate<Date> predicate = date -> date.compareTo(point) == 0;
-        return getResultTasks(tasks, predicate);
+    public static Set<Task> incoming(List<Task> tasks, Date date) {
+        Set<Task> result = new HashSet<>();
+        for(Task task: tasks) {
+            if(task.isActive()) {
+                if (task.isRepeated()) {
+                    for (Date time = task.getStartTime(); time.compareTo(task.getEndTime()) <= 0; time = new Date(time.getTime() + task.getRepeatInterval() * 1000L)) {
+                        if(time.compareTo(date) == 0) {
+                            result.add(task);
+                            break;
+                        }
+                    }
+                } else {
+                    Date time = task.getTime();
+                    if(time.compareTo(date) == 0) {
+                        result.add(task);
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private static List<Task> getResultTasks(List<Task> tasks, Predicate<Date> predicate) {

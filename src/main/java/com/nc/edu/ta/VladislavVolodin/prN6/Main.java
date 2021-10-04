@@ -11,25 +11,32 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Object> list = new LinkedList();
-        list.add("title");
-        list.add("title");
-        list.add("title");
 
-        list.hashCode();
+//        ArrayTaskList list1 = new ArrayTaskList();
+//
+//
+//        list1.add(new Task("task1", new Date()));
+//        list1.add(new Task("task2", new Date()));
+//        list1.add(new Task("task3", new Date()));
+//        list1.add(new Task("task4", new Date()));
+//
+//
+//        System.out.println(list1.toString());
 
         LinkedTaskList list3 = new LinkedTaskList();
         LinkedTaskList list4 = new LinkedTaskList();
 
-        list3.add(new Task("title", new Date()));
-        list3.add(new Task("title2", new Date()));
-        list3.add(new Task("title3", new Date()));
-        list3.add(new Task("title4", new Date()));
 
-        list4.add(new Task("title", new Date()));
-        list4.add(new Task("title2", new Date()));
-        list4.add(new Task("title3", new Date()));
-        list4.add(new Task("title4", new Date()));
+        Date dateStart = new Date();
+        list3.add(new Task("title", dateStart));
+        list3.add(new Task("title2", dateStart));
+        list3.add(new Task("title3", dateStart));
+        list3.add(new Task("title4", dateStart));
+
+        list4.add(new Task("title", dateStart));
+        list4.add(new Task("title2", dateStart));
+        list4.add(new Task("title3", dateStart));
+        list4.add(new Task("title4", dateStart));
 
         System.out.println(list3.hashCode());
         System.out.println(list4.hashCode());

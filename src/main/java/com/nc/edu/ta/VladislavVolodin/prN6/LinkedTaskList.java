@@ -1,6 +1,7 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
 
+import java.io.*;
 import java.util.Objects;
 
 /**
@@ -124,14 +125,7 @@ public class LinkedTaskList extends TaskList {
         }
         return "[]";
     }
-/*    @Override
-    public int hashCode() {
-        int hashCode = 1;
-        for (Task task : ) {
-            hashCode = 31 * hashCode + (task == null ? 0 : task.hashCode());
-        }
-        return hashCode;
-    }*/
+
 
     @Override
     public boolean equals(Object o) {
@@ -143,9 +137,7 @@ public class LinkedTaskList extends TaskList {
         NodeTask tmp1 = this.head;
         NodeTask tmp2 = list.head;
         for (int i = 0; i < size; i++) {
-            if(tmp1 == null && tmp2 == null)
-                throw new RuntimeException();
-            if (!Objects.equals(tmp1.task, tmp2.task)) {
+            if (!Objects.equals(tmp1.task.getTitle(), tmp2.task.getTitle())) {
                 return false;
             }
             tmp1 = tmp1.next;
@@ -157,10 +149,13 @@ public class LinkedTaskList extends TaskList {
     @Override
     public int hashCode() {
         int hashCode = 1;
-            if (head != null) {
-                hashCode = 31 * hashCode + (head.next == null ? 0 : head.next.hashCode());
-                System.out.println(head.toString() +  "   =   " + hashCode);
+        NodeTask next = head;
+        if (next != null) {
+            for (int i = 0; i < size; i++) {
+                hashCode = 31 * hashCode + (next == null ? 0 : next.task.hashCode());
+                next = next.next;
             }
+        }
         return hashCode;
     }
 }

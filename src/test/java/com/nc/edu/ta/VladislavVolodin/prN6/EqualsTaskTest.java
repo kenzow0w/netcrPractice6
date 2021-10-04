@@ -2,9 +2,10 @@ package com.nc.edu.ta.VladislavVolodin.prN6;
 
 import java.util.Date;
 
-import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 
 import org.junit.*;
+
+import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 import static org.junit.Assert.*;
 
 public class EqualsTaskTest {

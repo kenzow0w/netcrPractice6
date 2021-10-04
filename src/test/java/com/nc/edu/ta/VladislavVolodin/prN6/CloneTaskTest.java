@@ -1,11 +1,9 @@
-
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
 import java.util.Date;
 
 
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
 public class CloneTaskTest {

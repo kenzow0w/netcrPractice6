@@ -1,12 +1,13 @@
-/*package com.nc.edu.ta.VladislavVolodin.prN6;
-
+package com.nc.edu.ta.VladislavVolodin.prN6;
 
 import java.util.*;
 
 import org.junit.*;
+
+import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.assertContains;
+import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.task;
 import static org.junit.Assert.*;
 
-import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 
 public class IterableListTest extends AbstractTaskListTest {
 
@@ -68,7 +69,9 @@ public class IterableListTest extends AbstractTaskListTest {
         iterator.remove();
         iterator.remove();
     }
-}*/
+}
+
+
 
 
 

@@ -1,15 +1,18 @@
-package com.nc.edu.ta.VladislavVolodin.prN6;;
+package com.nc.edu.ta.VladislavVolodin.prN6;
+
+import java.util.*;
 
 import org.junit.*;
+
+import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.task;
 import static org.junit.Assert.*;
-import static com.nc.edu.ta.VladislavVolodin.prN6.Utils.*;
 
 public class EqualsListTest extends AbstractTaskListTest {
 
     public EqualsListTest(Class<? extends TaskList> tasksClass) {
         super(tasksClass);
     }
-
+    
     @Test
     public void testEquals() throws Exception {
         Task[] elements = {task("A"), task("B"), task("C")};
@@ -56,7 +59,7 @@ public class EqualsListTest extends AbstractTaskListTest {
 }
 
 class DummyList extends TaskList {
-
+    
     public void add(Task task) { }
     
     public void remove(Task task) { }
@@ -68,7 +71,10 @@ class DummyList extends TaskList {
     public Task getTask(int index) { 
         throw new IndexOutOfBoundsException();
     }
-
+    
+    public Iterator<Task> iterator() {
+        return Collections.<Task>emptyList().iterator();
+    }
     
     public boolean equals(Object obj) {
         return false;
