@@ -1,31 +1,28 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+import java.util.Objects;
 
 /**
  * Description class ArrayTaskList
  */
 
-public class LinkedTaskList extends AbstractTaskList {
+public class LinkedTaskList extends TaskList {
     private NodeTask head;
     /**
      * count number of tasks
      */
-
     private static int countTask = 0;
+
 
     /**
      * Description class NodeTask
      */
-
     private static class NodeTask {
 
         /**
          * task name
          */
-
         private Task task;
 
         /**
@@ -39,7 +36,7 @@ public class LinkedTaskList extends AbstractTaskList {
          * @param task task name
          * @param next next task
          */
-        NodeTask(Task task, NodeTask next) {
+        public NodeTask(Task task, NodeTask next) {
             this.task = task;
             this.next = next;
         }
@@ -49,7 +46,6 @@ public class LinkedTaskList extends AbstractTaskList {
     /**
      * Constructor which counting tasks
      */
-
     public LinkedTaskList() {
         countTask++;
     }
@@ -112,4 +108,59 @@ public class LinkedTaskList extends AbstractTaskList {
         return tmp.task;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("LinkedTaskList")
+                .append("[");
+        for (int i = 0; i < size(); i++) {
+            sb.append(getTask(i));
+
+            if (i == size() - 1) {
+                return sb.append("]").toString();
+            } else {
+                sb.append(", ");
+            }
+        }
+        return "[]";
+    }
+/*    @Override
+    public int hashCode() {
+        int hashCode = 1;
+        for (Task task : ) {
+            hashCode = 31 * hashCode + (task == null ? 0 : task.hashCode());
+        }
+        return hashCode;
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LinkedTaskList list = (LinkedTaskList) o;
+        if (this.size != list.size)
+            return false;
+        NodeTask tmp1 = this.head;
+        NodeTask tmp2 = list.head;
+        for (int i = 0; i < size; i++) {
+            if(tmp1 == null && tmp2 == null)
+                throw new RuntimeException();
+            if (!Objects.equals(tmp1.task, tmp2.task)) {
+                return false;
+            }
+            tmp1 = tmp1.next;
+            tmp2 = tmp2.next;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = 1;
+            if (head != null) {
+                hashCode = 31 * hashCode + (head.next == null ? 0 : head.next.hashCode());
+                System.out.println(head.toString() +  "   =   " + hashCode);
+            }
+        return hashCode;
+    }
 }

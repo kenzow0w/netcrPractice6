@@ -1,7 +1,5 @@
-/*
-package com.nc.edu.ta.VladislavVolodin.prN6;
+/*package com.nc.edu.ta.VladislavVolodin.prN6;
 
-import com.nc.edu.ta.VladislavVolodin.prN6.*;
 
 import java.util.*;
 
@@ -70,11 +68,8 @@ public class IterableListTest extends AbstractTaskListTest {
         iterator.remove();
         iterator.remove();
     }
-}
+}*/
 
-
-
-*/
 
 
 

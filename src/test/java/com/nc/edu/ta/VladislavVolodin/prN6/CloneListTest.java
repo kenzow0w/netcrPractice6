@@ -1,8 +1,6 @@
 /*
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-import com.nc.edu.ta.VladislavVolodin.prN6.Task;
-import com.nc.edu.ta.VladislavVolodin.prN6.*;
 
 import java.util.*;
 
@@ -17,7 +15,7 @@ public class CloneListTest extends AbstractTaskListTest {
     }
     
     @Test
-    public void testClone() {
+    public void testClone() throws CloneNotSupportedException {
         Task[] elements = { task("A"), task("B"), task("C") };
         for (Task task : elements)
             tasks.add(task);
@@ -40,3 +38,4 @@ public class CloneListTest extends AbstractTaskListTest {
     }
 }
 */
+

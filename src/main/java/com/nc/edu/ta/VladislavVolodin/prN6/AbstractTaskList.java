@@ -1,33 +1,16 @@
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+
+import java.io.*;
 
 /**
  * Description class AbstractTaskList
  */
-public abstract class AbstractTaskList implements Iterable<Task> {
+public abstract class AbstractTaskList implements Serializable {
     /**
      * Cunt of tasks
      */
     protected int size;
-
-    @Override
-    public Iterator<Task> iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super Task> action) {
-        Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<Task> spliterator() {
-        return Iterable.super.spliterator();
-    }
 
     /**
      * Add task
@@ -60,6 +43,19 @@ public abstract class AbstractTaskList implements Iterable<Task> {
         return size;
     }
 
-
+    @Override
+    public TaskList clone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream ous = new ObjectOutputStream(baos);
+            ous.writeObject(this);
+            ous.close();
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (TaskList) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            return null;
+        }
+    }
 
 }

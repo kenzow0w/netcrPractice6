@@ -1,6 +1,4 @@
-package com.nc.edu.ta.VladislavVolodin.prN6;
-
-import java.util.*;
+package com.nc.edu.ta.VladislavVolodin.prN6;;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -58,7 +56,7 @@ public class EqualsListTest extends AbstractTaskListTest {
 }
 
 class DummyList extends TaskList {
-    
+
     public void add(Task task) { }
     
     public void remove(Task task) { }
@@ -70,10 +68,7 @@ class DummyList extends TaskList {
     public Task getTask(int index) { 
         throw new IndexOutOfBoundsException();
     }
-    
-    public Iterator<Task> iterator() {
-        return Collections.<Task>emptyList().iterator();
-    }
+
     
     public boolean equals(Object obj) {
         return false;

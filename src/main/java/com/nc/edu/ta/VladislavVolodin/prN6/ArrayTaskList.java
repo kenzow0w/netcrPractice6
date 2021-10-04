@@ -1,17 +1,10 @@
-
 package com.nc.edu.ta.VladislavVolodin.prN6;
 
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import java.util.Objects;
 
 /**
  * Description class ArrayTaskList
  */
-
-
 public class ArrayTaskList extends AbstractTaskList {
 
 
@@ -44,21 +37,10 @@ public class ArrayTaskList extends AbstractTaskList {
 
 
     /**
-     * Constructor which creates a new task list
-     *
-     * @param tasks tasks list
-     */
-    public ArrayTaskList(Task[] tasks) {
-        this.tasks = tasks;
-        countTask++;
-    }
-
-
-    /**
      * Constructor which adds DEFUALT_TASK_SIZE to task list
      */
     public ArrayTaskList() {
-        this(new Task[DEFAULT_TASK_SIZE]);
+        tasks = new Task[10];
     }
 
 
@@ -92,8 +74,6 @@ public class ArrayTaskList extends AbstractTaskList {
      * @param task name task
      * @throws RuntimeException throw task equals null
      */
-
-
     @Override
     public void remove(Task task) throws RuntimeException {
         if (task == null) {
@@ -112,7 +92,6 @@ public class ArrayTaskList extends AbstractTaskList {
                         tasks[j] = null;
                     }
                 }
-
             }
         }
     }
@@ -122,13 +101,50 @@ public class ArrayTaskList extends AbstractTaskList {
      * @param index task number
      * @return task
      */
-
-
     public Task getTask(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(index);
         } else
             return tasks[index];
     }
-}
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ArrayTaskList")
+                .append("[");
+        for (int i = 0; i < size(); i++) {
+            sb.append(getTask(i));
+
+            if (i == size() - 1) {
+                return sb.append("]").toString();
+            } else {
+                sb.append(", ");
+            }
+        }
+        return "[]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null && getClass() != o.getClass()) return false;
+        ArrayTaskList list = (ArrayTaskList) o;
+        if (this.size != list.size) return false;
+        for (int i = 0; i < size; i++) {
+            if (!Objects.equals(this.tasks[i], list.tasks[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = 1;
+        for (Task tmp : this.tasks) {
+            hashCode = 31 * hashCode + (tmp == null ? 0 : tmp.hashCode());
+        }
+        return hashCode;
+    }
+}

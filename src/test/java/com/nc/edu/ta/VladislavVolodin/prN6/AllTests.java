@@ -18,10 +18,11 @@ import org.junit.runners.Suite.SuiteClasses;
         TaskTest.class,
         CloneTaskTest.class,
         EqualsTaskTest.class,
-//        TaskListTest.class,
+        //TaskListTest.class,
 //        IterableListTest.class,
 //        CloneListTest.class,
-        EqualsListTest.class,
+//        EqualsListTest.class,
+        MyEqualsListTest.class,
         TasksTest.class
 })
 public class AllTests {
