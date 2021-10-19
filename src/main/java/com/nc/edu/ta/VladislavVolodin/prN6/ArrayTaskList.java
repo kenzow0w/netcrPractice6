@@ -146,6 +146,5 @@ public class ArrayTaskList extends TaskList {
             hashCode = 31 * hashCode + (tmp == null ? 0 : tmp.hashCode());
         }
         return hashCode;
-
     }
 }

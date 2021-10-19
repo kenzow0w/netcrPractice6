@@ -19,7 +19,7 @@ public class LinkedTaskList extends TaskList {
     /**
      * Description class NodeTask
      */
-    private static class NodeTask {
+    private static class NodeTask implements Serializable {
 
         /**
          * task name
