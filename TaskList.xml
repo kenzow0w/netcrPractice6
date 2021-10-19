@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<tasks>
+    <task>
+        <title>Wake up</title>
+        <dateStart>TOMORROW</dateStart>
+        <dateEnd>TOMORROW</dateEnd>
+        <repeat>0</repeat>
+        <isActive>true</isActive>
+        <isRepeated>false</isRepeated>
+    </task>
+
+    <task>
+        <title>have breakfast</title>
+        <dateStart>TOMORROW</dateStart>
+        <dateEnd>TOMORROW</dateEnd>
+        <repeat>14400</repeat>
+        <isActive>true</isActive>
+        <isRepeated>true</isRepeated>
+    </task>
+</tasks>
+
